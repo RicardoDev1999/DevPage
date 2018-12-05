@@ -9,21 +9,10 @@
     <style>
         @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700');
 
-        @media (max-width: 768px) {
-            body {
-                font-size: 60%;
-            }
-        }
-        
-        @media (max-width: 425px) {
-            body {
-                font-size: 40%;
-            }
-        }
-
         html,
         body {
             font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
         }
 
         .text-carousel {
@@ -55,39 +44,80 @@
             }
         }
 
+        .anchor-section {
+            min-height: 100vh;
+        }
+
         #dev-title {
-            height: 100vh;
-            overflow: hidden;
             padding-top: 20vh;
             background-color: cyan;
         }
 
+        #dev-about {
+            background-color: red;
+        }
+
+        #dev-skills {
+            background-color: mediumblue;
+        }
+
+        #dev-projects {
+            background-color: green;
+        }
+
+        #dev-jobs {
+            background-color: brown;
+        }
+
         #menu {
             position: fixed;
-            top: calc(100% - 5rem);
+            top: calc(100% - 8em);
             margin: 0 auto;
             left: 0;
             right: 0;
             text-align: center;
             display: inline-block;
+            transition: top ease-in 500ms;
         }
 
         #menu .btn-menu {
-            width: 2.5rem;
-            height: 2.5rem;
+            position: relative;
+            width: 3.5em;
+            height: 3.5em;
             background: transparent;
             border: 2px solid black;
             border-radius: 50%;
             opacity: 0.7;
-            margin: 0 0.5em;
-            outline: none !important;
+            margin: 0 1em;
+            padding: 0.6em;
+            outline: none;
+            transition: filter ease-in 300ms, background-color ease-in-out 300ms, border-color ease-out 200ms;
         }
 
         #menu .btn-menu:hover {
-            width: 2.7rem;
-            height: 2.7rem;
             opacity: 1;
             cursor: pointer;
+            filter: invert(100%);
+            background-color: white;
+            border-color: white;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 60%;
+            }
+
+            #menu .btn-menu {
+                width: 4.5em;
+                height: 4.5em;
+                padding: 0.8em;
+            }
+        }
+
+        @media (max-width: 425px) {
+            body {
+                font-size: 50%;
+            }
         }
     </style>
 </head>
@@ -102,24 +132,29 @@
             href="#dev-title">
         <img src="images/icons/home.svg" class="img-fluid" alt="home">
     </button>
-    <button class="btn-menu">
-        <img src="images/icons/home.svg" class="img-fluid">
+    <button class="btn-menu" data-toggle="tooltip" data-placement="top" title="About" data-animation="true"
+            href="#dev-about">
+        <img src="images/icons/about.svg" class="img-fluid">
     </button>
-    <button class="btn-menu">
-        <img src="images/icons/home.svg" class="img-fluid">
+    <button class="btn-menu" data-toggle="tooltip" data-placement="top" title="Skills" data-animation="true"
+            href="#dev-skills">
+        <img src="images/icons/skills.svg" class="img-fluid">
     </button>
-    <button class="btn-menu">
-        <img src="images/icons/home.svg" class="img-fluid">
+    <button class="btn-menu" data-toggle="tooltip" data-placement="top" title="Projects" data-animation="true"
+            href="#dev-projects">
+        <img src="images/icons/projects.svg" class="img-fluid">
     </button>
-    <button class="btn-menu">
-        <img src="images/icons/home.svg" class="img-fluid">
+    <button class="btn-menu" data-toggle="tooltip" data-placement="top" title="Jobs" data-animation="true"
+            href="#dev-jobs">
+        <img src="images/icons/jobs.svg" class="img-fluid">
     </button>
-    <button class="btn-menu">
-        <img src="images/icons/home.svg" class="img-fluid">
+    <button class="btn-menu" data-toggle="tooltip" data-placement="top" title="Mentions" data-animation="true"
+            href="#dev-mentions">
+        <img src="images/icons/mentions.svg" class="img-fluid">
     </button>
 </div>
 
-<section id="dev-title">
+<section id="dev-title" class="anchor-section">
     <div class="row mx-5 px-5">
         <div class="col-sm-12">
             <picture>
@@ -141,17 +176,15 @@
         </div>
     </div>
 </section>
-<div class="container">
-    <section id="dev-about">
-        <div class="row">
-            a
-        </div>
-    </section>
-    <section id="dev-skills"></section>
-    <section id="dev-projects"></section>
-    <section id="dev-jobs"></section>
-    <section id="dev-mentions"></section>
-</div>
+<section id="dev-about" class="anchor-section">
+    <div class="row">
+        a
+    </div>
+</section>
+<section id="dev-skills" class="anchor-section"></section>
+<section id="dev-projects" class="anchor-section"></section>
+<section id="dev-jobs" class="anchor-section"></section>
+<section id="dev-mentions" class="anchor-section"></section>
 
 <footer>
 
@@ -168,13 +201,14 @@
         new textCarousel().create($("#dev-title-text-carousel"), 50, 800);
         $('[data-toggle="tooltip"]').tooltip();
         $(window).on("resize", function () {
-
+            
         });
         $(document).on('click', '*[href^="#"]', function (event) {
             var triggerElement = this;
+            
             $('html, body').animate({
                 scrollTop: $($.attr(this, 'href')).offset().top
-            }, 500, function () {
+            }, 1000, function () {
                 $(triggerElement).tooltip('hide');
                 $(triggerElement).mouseleave();
                 $(triggerElement).focusout();
