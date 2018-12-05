@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700');
+
+        @media only screen and (max-width: 425px) {
+            body {
+                font-size: 80%;
+            }
+        }
+
+        html,
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .text-carousel {
+            font-weight: 700;
+            font-size: 2em;
+        }
+
+        .text-carousel::after {
+            content: '|';
+            animation: text-carousel-after 600ms infinite;
+        }
+
+        @keyframes text-carousel-after {
+            0% {
+                color: transparent;
+            }
+
+            70% {
+                color: transparent;
+            }
+
+            71% {
+                color: inherit;
+
+            }
+
+            100% {
+                color: inherit;
+            }
+        }
+
+        #dev-title {
+            height: 100vh;
+            overflow: hidden;
+            padding-top: 25vh;
+            background-color: cyan;
+        }
+
+        #menu {
+            position: fixed;
+            top: calc(100% - 5rem);
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            text-align: center;
+            display: inline-block;
+        }
+
+        #menu .btn-menu {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: transparent;
+            border: 2px solid black;
+            border-radius: 50%;
+            opacity: 0.7;
+            margin: 0 0.5em;
+            outline: none !important;
+        }
+
+        #menu .btn-menu:hover {
+            width: 2.7rem;
+            height: 2.7rem;
+            opacity: 1;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+</header>
+
+<div id="menu">
+    <button class="btn-menu" data-toggle="tooltip" data-placement="top" title="Home" data-animation="true"
+            href="#dev-title">
+        <img src="images/icons/home.svg" class="img-fluid" alt="home">
+    </button>
+    <button class="btn-menu">
+        <img src="images/icons/home.svg" class="img-fluid">
+    </button>
+    <button class="btn-menu">
+        <img src="images/icons/home.svg" class="img-fluid">
+    </button>
+    <button class="btn-menu">
+        <img src="images/icons/home.svg" class="img-fluid">
+    </button>
+    <button class="btn-menu">
+        <img src="images/icons/home.svg" class="img-fluid">
+    </button>
+    <button class="btn-menu">
+        <img src="images/icons/home.svg" class="img-fluid">
+    </button>
+</div>
+
+<section id="dev-title">
+    <div class="row mx-5 px-5">
+        <div class="col-sm-12">
+            <picture>
+                <img src="images/Developers.png" class="mx-auto d-block img-fluid" alt="Developer Image">
+            </picture>
+        </div>
+        <div class="col-sm-12 text-center align-self-center white">
+            <div class="text-carousel" id="dev-title-text-carousel">
+                <span class="text-carousel-word" data-word="Hi! My Name Is Ricardo Duarte!"></span>
+                <span class="text-carousel-word" data-word="I'm a Full Stack Programmer."></span>
+                <span class="text-carousel-word" data-word="This is my Web Portfolio."></span>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <section id="dev-about">
+        <div class="row">
+            a
+        </div>
+    </section>
+    <section id="dev-skills"></section>
+    <section id="dev-projects"></section>
+    <section id="dev-jobs"></section>
+    <section id="dev-mentions"></section>
+</div>
+
+<footer>
+
+</footer>
+
+<script src="js/jquery/dist/jquery.min.js"></script>
+<script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="js/p5js/p5.min.js"></script>
+<script src="js/textCarousel/text.carousel.js"></script>
+<!--<script src="js/languages_canvas.js"></script>-->
+
+<script>
+    $(function () {
+        new textCarousel().create($("#dev-title-text-carousel"), 70, 800);
+        $('[data-toggle="tooltip"]').tooltip();
+        $(window).on("resize", function () {
+
+        });
+        $(document).on('click', '*[href^="#"]', function (event) {
+            var triggerElement = this;
+            $('html, body').animate({
+                scrollTop: $($.attr(this, 'href')).offset().top
+            }, 500, function () {
+                $(triggerElement).tooltip('hide');
+                $(triggerElement).mouseleave();
+                $(triggerElement).focusout();
+            });
+        });
+    });
+</script>
+</body>
+
+</html>
