@@ -19,9 +19,9 @@ class textCarousel {
 
         var textCarouselWords = textCarouselDiv.find(".text-carousel-word").toArray();
 
-        textCarouselWords.forEach(tcw => {
-            thisTextCarousel.words.push($(tcw).data("word"));
-            textCarouselDiv.text("...");
+        textCarouselWords.forEach(function (tcw) {
+            var word = $(tcw).data("word");
+            thisTextCarousel.words.push(word);
         });
 
         thisTextCarousel.start();
@@ -36,24 +36,22 @@ class textCarousel {
 
         var text = thisTextCarousel.words[thisTextCarousel.wordIndex];
 
-        thisTextCarousel.textCarouselDiv.text(thisTextCarousel.word);
+        thisTextCarousel.textCarouselDiv.html(thisTextCarousel.word);
 
         if (thisTextCarousel.mode === 1) {
             var intrevalErasingText = setInterval(function () {
-                if (thisTextCarousel.word.length > 0) {                 
+                if (thisTextCarousel.word.length > 0) {
                     thisTextCarousel.word = text.substring(0, thisTextCarousel.word.length - 1);
-                    thisTextCarousel.textCarouselDiv.text(thisTextCarousel.word);
-                }
-                else {
+                    var lastChar = thisTextCarousel.word[thisTextCarousel.word.length - 1];
+                    if(lastChar !== "<"){
+                        thisTextCarousel.textCarouselDiv.html(thisTextCarousel.word);
+                    }
+                } else {
                     clearInterval(intrevalErasingText);
                     thisTextCarousel.wordIndex += 1;
-                    thisTextCarousel.textCarouselDiv.text("");
+                    thisTextCarousel.textCarouselDiv.html("");
                     thisTextCarousel.mode = 0;
-
-                    setTimeout(function () {
-                        thisTextCarousel.start();
-                    }, thisTextCarousel.pause);
-
+                    thisTextCarousel.start();
                 }
             }, thisTextCarousel.interval);
         }
@@ -62,14 +60,16 @@ class textCarousel {
             var intrevalWriteText = setInterval(function () {
                 if (thisTextCarousel.word.length < text.length) {
                     thisTextCarousel.word = text.substring(0, thisTextCarousel.word.length + 1);
-                    thisTextCarousel.textCarouselDiv.text(thisTextCarousel.word);
-                }
-                else {
+                    var lastChar = thisTextCarousel.word[thisTextCarousel.word.length - 1];
+                    if(lastChar !== "<"){
+                        thisTextCarousel.textCarouselDiv.html(thisTextCarousel.word);
+                    }
+                } else {
                     clearInterval(intrevalWriteText);
                     thisTextCarousel.mode = 1;
                     setTimeout(function () {
                         thisTextCarousel.start();
-                    }, thisTextCarousel.pause);                  
+                    }, thisTextCarousel.pause);
                 }
             }, thisTextCarousel.interval);
         }

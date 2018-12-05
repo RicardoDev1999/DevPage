@@ -9,9 +9,15 @@
     <style>
         @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700');
 
-        @media only screen and (max-width: 425px) {
+        @media (max-width: 768px) {
             body {
-                font-size: 80%;
+                font-size: 60%;
+            }
+        }
+        
+        @media (max-width: 425px) {
+            body {
+                font-size: 40%;
             }
         }
 
@@ -52,7 +58,7 @@
         #dev-title {
             height: 100vh;
             overflow: hidden;
-            padding-top: 25vh;
+            padding-top: 20vh;
             background-color: cyan;
         }
 
@@ -122,9 +128,15 @@
         </div>
         <div class="col-sm-12 text-center align-self-center white">
             <div class="text-carousel" id="dev-title-text-carousel">
+                <span class="text-carousel-word" data-word="
+                Hi! My Name Is Ricardo Duarte!<br>
+                I'm a Full Stack Programmer.<br>
+                This is my Web Portfolio."></span>
+                <!--
                 <span class="text-carousel-word" data-word="Hi! My Name Is Ricardo Duarte!"></span>
                 <span class="text-carousel-word" data-word="I'm a Full Stack Programmer."></span>
                 <span class="text-carousel-word" data-word="This is my Web Portfolio."></span>
+                -->
             </div>
         </div>
     </div>
@@ -153,7 +165,7 @@
 
 <script>
     $(function () {
-        new textCarousel().create($("#dev-title-text-carousel"), 70, 800);
+        new textCarousel().create($("#dev-title-text-carousel"), 50, 800);
         $('[data-toggle="tooltip"]').tooltip();
         $(window).on("resize", function () {
 
