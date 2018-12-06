@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-PT">
 
 <head>
+    <title>Ricardo Duarte Web Portofolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
@@ -71,7 +72,7 @@
 
         #menu {
             position: fixed;
-            top: calc(100% - 8em);
+            top: calc(100% - 7em);
             margin: 0 auto;
             left: 0;
             right: 0;
@@ -94,6 +95,7 @@
             transition: filter ease-in 300ms, background-color ease-in-out 300ms, border-color ease-out 200ms;
         }
 
+        #menu .btn-menu.active,
         #menu .btn-menu:hover {
             opacity: 1;
             cursor: pointer;
@@ -107,6 +109,7 @@
                 font-size: 60%;
             }
 
+            #menu .btn-menu.active,
             #menu .btn-menu {
                 width: 4.5em;
                 height: 4.5em;
@@ -128,7 +131,7 @@
 </header>
 
 <div id="menu">
-    <button class="btn-menu" data-toggle="tooltip" data-placement="top" title="Home" data-animation="true"
+    <button class="btn-menu active" data-toggle="tooltip" data-placement="top" title="Home" data-animation="true"
             href="#dev-title">
         <img src="images/icons/home.svg" class="img-fluid" alt="home">
     </button>
@@ -197,23 +200,60 @@
 <!--<script src="js/languages_canvas.js"></script>-->
 
 <script>
+
     $(function () {
-        new textCarousel().create($("#dev-title-text-carousel"), 50, 800);
-        $('[data-toggle="tooltip"]').tooltip();
-        $(window).on("resize", function () {
-            
+
+        $(document).ready(function () {
+            $(this).scrollTop(0);
         });
-        $(document).on('click', '*[href^="#"]', function (event) {
+
+        var menuButtons = $("#menu .btn-menu");
+        
+        $(menuButtons).on("click", function (evt) {
+
             var triggerElement = this;
             
-            $('html, body').animate({
-                scrollTop: $($.attr(this, 'href')).offset().top
-            }, 1000, function () {
-                $(triggerElement).tooltip('hide');
-                $(triggerElement).mouseleave();
-                $(triggerElement).focusout();
-            });
+            if (!$(triggerElement).prop("disabled") && !$(triggerElement).hasClass("active")) {
+
+                $(menuButtons)
+                    .removeClass("active")
+                    .prop("disabled" , true);
+                
+                $(triggerElement).addClass("active");
+
+                $.map(menuButtons , function(e , i){
+                    if(!$(e).hasClass("active")){
+                        $(e).hide(500);
+                    }
+                });
+                
+                $('html, body').animate({
+                    scrollTop: $($.attr(triggerElement, 'href')).offset().top
+                }, 1000, function () {
+                    $(triggerElement).tooltip('hide');
+                    $(triggerElement).mouseleave();
+                    $(triggerElement).focusout();
+                    $(menuButtons).prop("disabled" , false).show(500);
+                });
+            }
         });
+
+        new textCarousel().create($("#dev-title-text-carousel"), 50, 800);
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $(window).on("resize", function () {
+            var activeMenuButton = $.map(menuButtons, function (val, i) {
+                if ($(val).hasClass("active")) {
+                    return val;
+                }
+            });
+
+            if (activeMenuButton) {
+                $(activeMenuButton).click();
+            }
+        });
+
     });
 </script>
 </body>
