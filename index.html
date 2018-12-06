@@ -13,7 +13,7 @@
         html,
         body {
             font-family: 'Montserrat', sans-serif;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         .text-carousel {
@@ -46,7 +46,7 @@
         }
 
         .anchor-section {
-            min-height: 100vh !important;
+            box-sizing: border-box;
         }
 
         #dev-title {
@@ -110,6 +110,10 @@
         @media (max-width: 768px) {
             body {
                 font-size: 60%;
+            }
+
+            .anchor-section {
+                padding-top: 0.5vh !important;
             }
 
             #menu .btn-menu.active,
@@ -236,14 +240,12 @@
     var menuButtons;
 
     $(function () {
-
+        
         menuButtons = $("#menu .btn-menu");
 
         $.scrollify({
             section: ".anchor-section",
-            scrollbars: false,
             scrollSpeed: 1000,
-            setHeights: false,
             before: function () {
                 scrollifySetActiveButton();
                 var currIndexScroll = $.scrollify.currentIndex();
@@ -255,16 +257,9 @@
             },
             afterRender: function () {
                 scrollifySetActiveButton();
-            },
-            afterResize: function(){
-                $.map(menuButtons , function(e){
-                    if($(e).hasClass("active")){
-                        $.scrollify.move($.attr(e, 'href'));
-                    }
-                })
             }
         });
-
+        
         $(menuButtons).on("click", function (evt) {
 
             var triggerElement = this;
