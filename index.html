@@ -248,9 +248,9 @@
                     return val;
                 }
             });
-
+            
             if (activeMenuButton) {
-                $(activeMenuButton).click();
+                $('html, body').scrollTop($($.attr(activeMenuButton[0], 'href')).offset().top);
             }
         });
 
