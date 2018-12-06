@@ -223,7 +223,7 @@
 
                 $.map(menuButtons , function(e , i){
                     if(!$(e).hasClass("active")){
-                        $(e).hide(500);
+                        $(e).hide(250);
                     }
                 });
                 
@@ -233,7 +233,7 @@
                     $(triggerElement).tooltip('hide');
                     $(triggerElement).mouseleave();
                     $(triggerElement).focusout();
-                    $(menuButtons).prop("disabled" , false).show(500);
+                    $(menuButtons).prop("disabled" , false).show(250);
                 });
             }
         });
