@@ -13,7 +13,7 @@
         html,
         body {
             font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
         .text-carousel {
@@ -47,6 +47,7 @@
 
         .anchor-section {
             box-sizing: border-box;
+            min-height:100vh;
         }
 
         #dev-title {
@@ -137,6 +138,7 @@
                 margin: 0 0.5em;
             }
         }
+        
 
     </style>
 </head>
@@ -148,27 +150,27 @@
 
 <div id="menu">
     <button class="btn-menu" data-toggle="tooltip" data-placement="top" title="Home" data-animation="true"
-            href="#devtitle">
+            href="#dev-title">
         <img src="images/icons/home.svg" class="img-fluid" alt="home">
     </button>
     <button class="btn-menu" data-toggle="tooltip" data-placement="top" title="About Me" data-animation="true"
-            href="#devabout">
+            href="#dev-about">
         <img src="images/icons/about.svg" class="img-fluid">
     </button>
     <button class="btn-menu" data-toggle="tooltip" data-placement="top" title="Skills" data-animation="true"
-            href="#devskills">
+            href="#dev-skills">
         <img src="images/icons/skills.svg" class="img-fluid">
     </button>
     <button class="btn-menu" data-toggle="tooltip" data-placement="top" title="Projects" data-animation="true"
-            href="#devprojects">
+            href="#dev-projects">
         <img src="images/icons/projects.svg" class="img-fluid">
     </button>
     <button class="btn-menu" data-toggle="tooltip" data-placement="top" title="Jobs" data-animation="true"
-            href="#devjobs">
+            href="#dev-jobs">
         <img src="images/icons/jobs.svg" class="img-fluid">
     </button>
     <button class="btn-menu" data-toggle="tooltip" data-placement="top" title="Mentions" data-animation="true"
-            href="#devmentions">
+            href="#dev-mentions">
         <img src="images/icons/mentions.svg" class="img-fluid">
     </button>
 </div>
@@ -177,7 +179,7 @@
     <div class="row mx-1">
         <div class="col-sm-12">
             <picture>
-                <img src="images/Developers.png" class="mx-auto mt-5 d-block img-fluid" alt="Developer Image">
+                <img src="images/Developers.png" class="mx-auto d-block img-fluid" alt="Developer Image">
             </picture>
         </div>
         <div class="col-sm-12 text-center align-self-center">
@@ -210,10 +212,10 @@
         </div>
     </div>
 </section>
-<section id="dev-skills" data-section-name="devskills" class="anchor-section"></section>
-<section id="dev-projects" data-section-name="devprojects" class="anchor-section"></section>
-<section id="dev-jobs" data-section-name="devjobs" class="anchor-section"></section>
-<section id="dev-mentions" data-section-name="devmentions" class="anchor-section"></section>
+<section id="dev-skills" data-section-name="dev-skills" class="anchor-section"></section>
+<section id="dev-projects" data-section-name="dev-projects" class="anchor-section"></section>
+<section id="dev-jobs" data-section-name="dev-jobs" class="anchor-section"></section>
+<section id="dev-mentions" data-section-name="dev-mentions" class="anchor-section"></section>
 
 <footer>
 
@@ -223,43 +225,20 @@
 <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="js/p5js/p5.min.js"></script>
 <script src="js/textCarousel/text.carousel.js"></script>
-<script src="js/scrollify/jquery.scrollify.js"></script>
 <!--<script src="js/languages_canvas.js"></script>-->
 
 <script>
 
-    function scrollifySetActiveButton() {
-        $(menuButtons).tooltip('hide');
-        $(menuButtons).mouseleave();
-        $(menuButtons).focusout();
-        menuButtons.removeClass("active");
-        var currIndexScroll = $.scrollify.currentIndex();
-        $(menuButtons[currIndexScroll]).addClass("active");
-    }
-
     var menuButtons;
-
+    
     $(function () {
-        
+
+        /*$(document).ready(function () {
+            $(this).scrollTop(0);
+        });*/
+
         menuButtons = $("#menu .btn-menu");
 
-        $.scrollify({
-            section: ".anchor-section",
-            scrollSpeed: 1000,
-            before: function () {
-                scrollifySetActiveButton();
-                var currIndexScroll = $.scrollify.currentIndex();
-                $(menuButtons[currIndexScroll]).tooltip('show');
-            },
-            after: function () {
-                var currIndexScroll = $.scrollify.currentIndex();
-                $(menuButtons[currIndexScroll]).tooltip('hide');
-            },
-            afterRender: function () {
-                scrollifySetActiveButton();
-            }
-        });
-        
         $(menuButtons).on("click", function (evt) {
 
             var triggerElement = this;
@@ -278,13 +257,13 @@
                     }
                 });
 
-                $.scrollify.move($.attr(triggerElement, 'href'));
-
-                setTimeout(function () {
+                $('html, body').animate({
+                    scrollTop: $($.attr(triggerElement, 'href')).offset().top
+                }, 1000, function () {
                     $(menuButtons)
                         .prop("disabled", false)
-                        .show(300);
-                }, 700);
+                        .show(250);
+                });
 
                 $(triggerElement).tooltip('hide');
                 $(triggerElement).mouseleave();
@@ -296,6 +275,19 @@
         new textCarousel().create($("#dev-title-text-carousel"), 50, 800);
 
         $('[data-toggle="tooltip"]').tooltip();
+
+        $(window).on("resize", function () {
+            var activeMenuButton = $.map(menuButtons, function (val, i) {
+                if ($(val).hasClass("active")) {
+                    return val;
+                }
+            });
+
+            if (activeMenuButton) {
+                $('html, body').scrollTop($($.attr(activeMenuButton[0], 'href')).offset().top);
+            }
+        });
+
     });
 </script>
 </body>
