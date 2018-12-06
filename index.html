@@ -9,7 +9,7 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700');
-
+        
         html,
         body {
             font-family: 'Montserrat', sans-serif;
@@ -55,6 +55,7 @@
         }
 
         #dev-about {
+            padding-top: 20vh;
             background-color: red;
         }
 
@@ -115,11 +116,29 @@
                 height: 4.5em;
                 padding: 0.8em;
             }
+
+            #menu {
+                top:unset;
+                bottom: calc(100% - 10em);
+            }
+            
+            p{
+                font-size:1.5em;
+            }
         }
 
         @media (max-width: 425px) {
             body {
-                font-size: 50%;
+                font-size: 45%;
+            }
+            p{
+                font-size:2em;
+            }
+            #menu .btn-menu.active,
+            #menu .btn-menu {
+                width: 5em;
+                height: 5em;
+                padding: 0.8em;
             }
         }
     </style>
@@ -164,24 +183,33 @@
                 <img src="images/Developers.png" class="mx-auto d-block img-fluid" alt="Developer Image">
             </picture>
         </div>
-        <div class="col-sm-12 text-center align-self-center white">
+        <div class="col-sm-12 text-center align-self-center">
             <div class="text-carousel" id="dev-title-text-carousel">
                 <span class="text-carousel-word" data-word="
                 Hi! My Name Is Ricardo Duarte!<br>
                 I'm a Full Stack Programmer.<br>
                 This is my Web Portfolio."></span>
-                <!--
-                <span class="text-carousel-word" data-word="Hi! My Name Is Ricardo Duarte!"></span>
-                <span class="text-carousel-word" data-word="I'm a Full Stack Programmer."></span>
-                <span class="text-carousel-word" data-word="This is my Web Portfolio."></span>
-                -->
             </div>
         </div>
     </div>
 </section>
 <section id="dev-about" class="anchor-section">
-    <div class="row">
-        a
+    <div class="row mx-3 my-5 px-5">
+        <div class="col-12 text-center">
+            <h1 class="blend-text">ABOUT ME</h1>
+        </div>
+    </div>
+    <div class="row mx-3 px-5">
+        <div class="col-md-2 col-sm-12 text-center align-self-center">
+            <img width="250px" height="250px" class="img-fluid" src="images/hero-animated.gif" alt="2d-hero">
+        </div>
+        <div class="col-md-10 col-sm-12 text-justify align-self-center">
+            <p>
+                I started programming at the age of twelve with a game making platform called <b>"Rpg Maker"</b>. <br>
+                The love for programming started there. <br>
+                At the age of sixteen I took a Programming Course which lead me to my first job where I started to thrive in the craft of being an Programmer.
+            </p>
+        </div>
     </div>
 </section>
 <section id="dev-skills" class="anchor-section"></section>
@@ -203,38 +231,42 @@
 
     $(function () {
 
-        $(document).ready(function () {
+        /*$(document).ready(function () {
             $(this).scrollTop(0);
-        });
+        });*/
 
         var menuButtons = $("#menu .btn-menu");
-        
+
         $(menuButtons).on("click", function (evt) {
 
             var triggerElement = this;
-            
+
             if (!$(triggerElement).prop("disabled") && !$(triggerElement).hasClass("active")) {
 
                 $(menuButtons)
                     .removeClass("active")
-                    .prop("disabled" , true);
-                
+                    .prop("disabled", true);
+
                 $(triggerElement).addClass("active");
 
-                $.map(menuButtons , function(e , i){
-                    if(!$(e).hasClass("active")){
-                        $(e).hide(250);
+                $.map(menuButtons, function (e, i) {
+                    if (!$(e).hasClass("active")) {
+                        $(e).hide(200);
                     }
                 });
-                
+
                 $('html, body').animate({
                     scrollTop: $($.attr(triggerElement, 'href')).offset().top
                 }, 1000, function () {
-                    $(triggerElement).tooltip('hide');
-                    $(triggerElement).mouseleave();
-                    $(triggerElement).focusout();
-                    $(menuButtons).prop("disabled" , false).show(250);
+                    $(menuButtons)
+                        .prop("disabled", false)
+                        .show(250);
                 });
+
+                $(triggerElement).tooltip('hide');
+                $(triggerElement).mouseleave();
+                $(triggerElement).focusout();
+
             }
         });
 
@@ -248,7 +280,7 @@
                     return val;
                 }
             });
-            
+
             if (activeMenuButton) {
                 $('html, body').scrollTop($($.attr(activeMenuButton[0], 'href')).offset().top);
             }
