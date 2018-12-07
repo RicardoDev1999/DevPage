@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/js/textCarousel/text-carousel.js" />
+        <item url="file://$PROJECT_DIR$/js/textCarousel/text-carrousel.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/js/textCarousel/text-carousel.js" />
+      <root url="file://$PROJECT_DIR$/js/textCarousel/text-carrousel.js" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -52,10 +52,10 @@
             </div>
             <div class="col-sm-12 text-center align-self-center">
                 <div class="text-carousel" id="dev-title-text-carousel">
-                <span class="text-carousel-word" data-word="
-                Hi! My Name Is Ricardo Duarte!<br>
-                I'm a Full Stack Programmer.<br>
-                This is my Web Portfolio."></span>
+                <!--<span class="text-carousel-word" data-word="Hi! My Name Is Ricardo Duarte!<br>I'm a Full Stack Programmer.<br>This is my Web Portfolio."></span>-->
+                    <span class="text-carousel-word" data-word="Hi! My Name Is Ricardo Duarte!"></span>
+                    <span class="text-carousel-word" data-word="I'm a Full Stack Programmer."></span>
+                    <span class="text-carousel-word" data-word="This is my Web Portfolio."></span>
                 </div>
             </div>
         </div>
@@ -93,7 +93,7 @@
 <script src="js/jquery/dist/jquery.min.js"></script>
 <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="js/p5js/p5.min.js"></script>
-<script src="js/textCarousel/text.carousel.js"></script>
+<script src="js/textCarousel/text-carousel.js"></script>
 <!--<script src="js/languages_canvas.js"></script>-->
 
 <script>
@@ -129,27 +129,25 @@
                     .prop("disabled", true);
 
                 $(triggerElement).addClass("active");
-
+                
                 currScreen.fadeOut(500);
-
                 newScreen.fadeIn(1000, function () {
                     $(menuButtons)
                         .prop("disabled", false)
                 });
 
+
                 $(triggerElement).tooltip('hide');
                 $(triggerElement).mouseleave();
                 $(triggerElement).focusout();
-
             }
         });
-
-        new textCarousel().create($("#dev-title-text-carousel"), 50, 800);
+        
+        new TextCarousel($("#dev-title-text-carousel"), 50, 1200).start();
 
         $('[data-toggle="tooltip"]').tooltip();
 
         $(window).on("resize", function () {
-            debugger;
             var activeMenuButton = getCurrentJqScreen();
             if (activeMenuButton) {
                 //$('html, body').scrollTop(activeMenuButton).offset().top);
