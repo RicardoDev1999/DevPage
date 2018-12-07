@@ -3,144 +3,11 @@
 
 <head>
     <title>Ricardo Duarte Web Portofolio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
 
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700');
-
-        html,
-        body {
-            font-family: 'Montserrat', sans-serif;
-            overflow: hidden;
-        }
-
-        .text-carousel {
-            font-weight: 700;
-            font-size: 2em;
-        }
-
-        .text-carousel::after {
-            content: '|';
-            animation: text-carousel-after 600ms infinite;
-        }
-
-        @keyframes text-carousel-after {
-            0% {
-                color: transparent;
-            }
-
-            70% {
-                color: transparent;
-            }
-
-            71% {
-                color: inherit;
-
-            }
-
-            100% {
-                color: inherit;
-            }
-        }
-
-        .anchor-section {
-            box-sizing: border-box;
-            min-height:100vh;
-        }
-
-        #dev-title {
-            padding-top: 10vh;
-            background-color: cyan;
-        }
-
-        #dev-about {
-            padding-top: 10vh;
-            background-color: red;
-        }
-
-        #dev-skills {
-            background-color: mediumblue;
-        }
-
-        #dev-projects {
-            background-color: green;
-        }
-
-        #dev-jobs {
-            background-color: brown;
-        }
-
-        #menu {
-            position: fixed;
-            top: calc(100% - 7em);
-            margin: 0 auto;
-            left: 0;
-            right: 0;
-            text-align: center;
-            display: inline-block;
-            transition: top ease-in 500ms;
-        }
-
-        #menu .btn-menu {
-            position: relative;
-            width: 3.5em;
-            height: 3.5em;
-            background: transparent;
-            border: 2px solid black;
-            border-radius: 50%;
-            opacity: 0.7;
-            margin: 0 1em;
-            padding: 0.6em;
-            outline: none;
-            transition: filter ease-in 300ms,
-            background-color ease-in-out 300ms,
-            border-color ease-out 200ms;
-        }
-
-        #menu .btn-menu.active,
-        #menu .btn-menu:hover {
-            opacity: 1;
-            cursor: pointer;
-            filter: invert(100%);
-            background-color: white;
-            border-color: white;
-        }
-
-        @media (max-width: 768px) {
-            body {
-                font-size: 60%;
-            }
-
-            .anchor-section {
-                padding-top: 0.5vh !important;
-            }
-
-            #menu .btn-menu.active,
-            #menu .btn-menu {
-                width: 4.5em;
-                height: 4.5em;
-                padding: 0.8em;
-            }
-
-            p {
-                font-size: 1.5em;
-            }
-        }
-
-        @media (max-width: 425px) {
-            #menu .btn-menu.active,
-            #menu .btn-menu {
-                padding: 0.6em;
-                width: 4em;
-                height: 4em;
-                margin: 0 0.5em;
-            }
-        }
-        
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/site.css">
 </head>
 
 <body>
@@ -148,74 +15,76 @@
 <header>
 </header>
 
-<div id="menu">
-    <button class="btn-menu" data-toggle="tooltip" data-placement="top" title="Home" data-animation="true"
+<div id="menu" class="hidden">
+    <button class="btn-menu active" data-toggle="tooltip" data-placement="top" title="Home" data-animation="true"
             href="#dev-title">
-        <img src="images/icons/home.svg" class="img-fluid" alt="home">
+        <img src="images/icons/home.svg" class="img-fluid" alt="...">
     </button>
     <button class="btn-menu" data-toggle="tooltip" data-placement="top" title="About Me" data-animation="true"
             href="#dev-about">
-        <img src="images/icons/about.svg" class="img-fluid">
+        <img src="images/icons/about.svg" class="img-fluid alt=" ...">
     </button>
     <button class="btn-menu" data-toggle="tooltip" data-placement="top" title="Skills" data-animation="true"
             href="#dev-skills">
-        <img src="images/icons/skills.svg" class="img-fluid">
+        <img src="images/icons/skills.svg" class="img-fluid" alt="...">
     </button>
     <button class="btn-menu" data-toggle="tooltip" data-placement="top" title="Projects" data-animation="true"
             href="#dev-projects">
-        <img src="images/icons/projects.svg" class="img-fluid">
+        <img src="images/icons/projects.svg" class="img-fluid" alt="...">
     </button>
     <button class="btn-menu" data-toggle="tooltip" data-placement="top" title="Jobs" data-animation="true"
             href="#dev-jobs">
-        <img src="images/icons/jobs.svg" class="img-fluid">
+        <img src="images/icons/jobs.svg" class="img-fluid" alt="...">
     </button>
     <button class="btn-menu" data-toggle="tooltip" data-placement="top" title="Mentions" data-animation="true"
             href="#dev-mentions">
-        <img src="images/icons/mentions.svg" class="img-fluid">
+        <img src="images/icons/mentions.svg" class="img-fluid" alt="...">
     </button>
 </div>
 
-<section id="dev-title" data-section-name="devtitle" class="anchor-section">
-    <div class="row mx-1">
-        <div class="col-sm-12">
-            <picture>
-                <img src="images/Developers.png" class="mx-auto d-block img-fluid" alt="Developer Image">
-            </picture>
-        </div>
-        <div class="col-sm-12 text-center align-self-center">
-            <div class="text-carousel" id="dev-title-text-carousel">
+<div id="sections">
+    <section id="dev-title" class="anchor-section">
+        <div class="row mx-1">
+            <div class="col-sm-12">
+                <picture>
+                    <img src="images/Developers.png" class="mx-auto d-block img-fluid" alt="Developer Image">
+                </picture>
+            </div>
+            <div class="col-sm-12 text-center align-self-center">
+                <div class="text-carousel" id="dev-title-text-carousel">
                 <span class="text-carousel-word" data-word="
                 Hi! My Name Is Ricardo Duarte!<br>
                 I'm a Full Stack Programmer.<br>
                 This is my Web Portfolio."></span>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-<section id="dev-about" data-section-name="devabout" class="anchor-section">
-    <div class="row mx-3 my-5 px-5">
-        <div class="col-12 text-center">
-            <h1 class="blend-text">ABOUT ME</h1>
+    </section>
+    <section id="dev-about" class="anchor-section">
+        <div class="row mx-3 mb-5 text-center">
+            <div class="col-12">
+                <h1 class="blend-text">ABOUT ME</h1>
+            </div>
         </div>
-    </div>
-    <div class="row mx-3 px-5">
-        <div class="col-md-2 col-sm-12 text-center align-self-center">
-            <img width="250px" height="250px" class="img-fluid" src="images/hero-animated.gif" alt="2d-hero">
+        <div class="row mx-3">
+            <div class="col-lg-2 col-md-12 text-center align-self-center">
+                <img id="dev-about--hero-img" class="img-fluid" src="images/hero-animated.gif" alt="2d-hero">
+            </div>
+            <div class="col-lg-10 col-md-12 text-justify align-self-center">
+                <p>
+                    I started programming at the age of twelve with a game making platform called <b>Rpg Maker</b>.<br>
+                    The love for programming started there.<br>
+                    At the age of 16 I took a Programming Course which lead me to my first job where I started to
+                    thrive in the craft of being an Programmer.
+                </p>
+            </div>
         </div>
-        <div class="col-md-10 col-sm-12 text-justify align-self-center">
-            <p>
-                I started programming at the age of twelve with a game making platform called <b>Rpg Maker</b>.<br>
-                The love for programming started there.<br>
-                At the age of 16 I took a Programming Course which lead me to my first job where I started to
-                thrive in the craft of being an Programmer.
-            </p>
-        </div>
-    </div>
-</section>
-<section id="dev-skills" data-section-name="dev-skills" class="anchor-section"></section>
-<section id="dev-projects" data-section-name="dev-projects" class="anchor-section"></section>
-<section id="dev-jobs" data-section-name="dev-jobs" class="anchor-section"></section>
-<section id="dev-mentions" data-section-name="dev-mentions" class="anchor-section"></section>
+    </section>
+    <section id="dev-skills" class="anchor-section"></section>
+    <section id="dev-projects" class="anchor-section"></section>
+    <section id="dev-jobs" class="anchor-section"></section>
+    <section id="dev-mentions" class="anchor-section"></section>
+</div>
 
 <footer>
 
@@ -230,12 +99,19 @@
 <script>
 
     var menuButtons;
-    
+
+    function getCurrentJqScreen() {
+        return $.map(menuButtons, function (val) {
+            if ($(val).hasClass("active")) {
+                return $($.attr(val, 'href'));
+            }
+        })[0];
+    }
+
     $(function () {
 
-        /*$(document).ready(function () {
-            $(this).scrollTop(0);
-        });*/
+        $(".anchor-section:not(#dev-title)").fadeOut();
+        $("#menu").removeClass("hidden");
 
         menuButtons = $("#menu .btn-menu");
 
@@ -245,24 +121,20 @@
 
             if (!$(triggerElement).prop("disabled") && !$(triggerElement).hasClass("active")) {
 
+                var currScreen = getCurrentJqScreen();
+                var newScreen = $($.attr(triggerElement, 'href'));
+
                 $(menuButtons)
                     .removeClass("active")
                     .prop("disabled", true);
 
                 $(triggerElement).addClass("active");
 
-                $.map(menuButtons, function (e, i) {
-                    if (!$(e).hasClass("active")) {
-                        $(e).hide(200);
-                    }
-                });
+                currScreen.fadeOut(500);
 
-                $('html, body').animate({
-                    scrollTop: $($.attr(triggerElement, 'href')).offset().top
-                }, 1000, function () {
+                newScreen.fadeIn(1000, function () {
                     $(menuButtons)
                         .prop("disabled", false)
-                        .show(250);
                 });
 
                 $(triggerElement).tooltip('hide');
@@ -277,14 +149,10 @@
         $('[data-toggle="tooltip"]').tooltip();
 
         $(window).on("resize", function () {
-            var activeMenuButton = $.map(menuButtons, function (val, i) {
-                if ($(val).hasClass("active")) {
-                    return val;
-                }
-            });
-
+            debugger;
+            var activeMenuButton = getCurrentJqScreen();
             if (activeMenuButton) {
-                $('html, body').scrollTop($($.attr(activeMenuButton[0], 'href')).offset().top);
+                //$('html, body').scrollTop(activeMenuButton).offset().top);
             }
         });
 
